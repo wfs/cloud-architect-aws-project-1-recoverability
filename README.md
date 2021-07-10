@@ -1,6 +1,12 @@
-# Data durability and recovery
+# Recoverability In AWS
+
+## Project 1 of 3 in AWS Cloud Architect Nanodegree at Udacity
 
 In this project you will create highly available solutions to common use cases. You will build a Multi-AvailabilityZone, Multi-Region database and show how to use it in multiple geographically separate AWS regions. You will also build a website hosting solution that is versioned so that any data destruction and accidents can be quickly and easily undone.
+
+### My Architecture Design
+
+- ![architecture_design](architecture_design.png)
 
 ### Part 1 - Data durability and recovery
 
@@ -20,15 +26,6 @@ Screenshots of successfully created VPCs in two different AWS regions.
 2. Secondary VPC located in ap-southeast-1 (Singapore).
    ![secondary vpc](./screenshots/secondary_Vpc.png)
    ![secondary vpc](./screenshots/secondaryVPC_subnets.png)
-
-### Highly durable RDS Database
-
-1. Create a new RDS Subnet group in the active and standby region.
-2. Create a new MySQL, multi-AZ database in the active region. The database must:
-   - Be a “burstable” instance class.
-   - Have only the “UDARR-Database” security group.
-   - Have an initial database called “udacity.”
-3. Create a read replica database in the standby region. This database has the same requirements as the database in the active region.
 
 #### Relational Database Resilience
 
@@ -76,7 +73,7 @@ Predict the availability of a configuration.
 
 Paragraph describing the Recovery Time Objective (RTO) and Recovery Point Objective (RPO) of this database configuration
 
-- See [estimates.txt](./estimates.txt)
+- See [estimates.txt](estimates.txt)
 
 ##### Criteria
 
@@ -86,11 +83,11 @@ Use correct data access patterns.
 
 Log of the student connecting to, reading from and writing to the primary database
 
-- See [log_primary.txt](./log_primary.txt)
+- See [log_primary.txt](log_primary.txt)
 
 Log of the student connecting to the read-replica database and being able to read data from the database, but not able to write (insert) data.
 
-- See [log_secondary.txt](./log_secondary.txt)
+- See [log_secondary.txt](log_secondary.txt)
 
 ##### Criteria
 
@@ -122,7 +119,7 @@ Operate a highly resilient database.
   ![secondary monitoring replication configuration](./screenshots/rr_after_promotion.png)
 
 - Log of the student connecting to, reading from, and writing to the database in the standby region, after promotion.
-  - See [log_rr_after_promotion.txt](./log_rr_after_promotion.txt)
+  - See [log_rr_after_promotion.txt](log_rr_after_promotion.txt)
 
 ### Part 3
 
@@ -135,7 +132,6 @@ Build a resilient static web hosting solution in AWS. Create a versioned S3 buck
 3. Paste URL into a web browser to see your website.
 
 **Save** the screenshot of the webpage. Name your screenshot "s3_original.png"
-You will now “accidentally” change the contents of the website such that it is no longer serving the correct content
 
 You will now “accidentally” change the contents of the website such that it is no longer serving the correct content
 
