@@ -123,40 +123,44 @@ Operate a highly resilient database.
 
 ### Part 3
 
-### Website Resiliency
+### Website Recovery
 
-Build a resilient static web hosting solution in AWS. Create a versioned S3 bucket and configure it as a static website.
+##### Criteria
 
-1. Enter “index.html” for both Index document and Error document
-2. Upload the files from the GitHub repo (under `/project/s3/`)
-3. Paste URL into a web browser to see your website.
+Create a versioned website.
 
-**Save** the screenshot of the webpage. Name your screenshot "s3_original.png"
+##### Meets Specification
 
-You will now “accidentally” change the contents of the website such that it is no longer serving the correct content
+- Screenshot of the [website](http://aws-architect-project-1-static-site.s3-website-ap-southeast-2.amazonaws.com/) with a winter scene as the background and displaying a timestamp.
+  ![s3_original](./screenshots/s3_original.png)
 
-1. Change `index.html` to refer to a different “season”
-2. Re-upload `index.html`
-3. Refresh web page
+##### Criteria
 
-**SAVE** a screenshot of the modified webpage. Name your screenshot "s3_season.png"
+Recover from “accidental” modification to website.
+
+##### Meets Specification
+
+- Screenshot of same website with a different season (picture) as the background, still displaying a timestamp.
+  ![s3_season](./screenshots/s3_season.png)
 
 You will now need to “recover” the website by rolling the content back to a previous version.
 
 1. Recover the `index.html` object back to the original version
 2. Refresh web page
 
-**SAVE** a screenshot of the modified webpage. Name your screenshot "s3_season_revert.png"
+- Screenshot of AWS S3 object “index.html” showing multiple versions of the object exist.
+  ![s3_index.html_versions](./screenshots/s3_index.html_versions.png)
+
+- Screenshot of the same website once again with the original background, still displaying a timestamp.
+  ![s3_season_revert](./screenshots/s3_season_revert.png)
 
 You will now “accidentally” delete contents from the S3 bucket. Delete “winter.jpg”
 
-**SAVE** screenshots of the modified webpage and of the existing versions of the file showing the "Deletion marker". Name your screenshots: s3_deletion.png, s3_delete_marker.png
+- Screenshot of the same website with no background image.
+  ![s3_deletion](./screenshots/s3_deletion.png)
 
-You will now need to “recover” the object:
+- Screenshot of AWS S3 object “winter.jpg” showing multiple versions of the object exist with the latest being a “deletion marker”.
+  ![s3_delete_marker](./screenshots/s3_delete_marker.png)
 
-1. Recover the deleted object
-2. Refresh web page
-
-**SAVE** a screenshot of the modified webpage. Name your screenshot "s3_delete_revert.png"
-
-## License
+- Screenshot of the same website once again with the original background, still displaying a timestamp.
+  ![s3_delete_revert](./screenshots/s3_delete_revert.png)
