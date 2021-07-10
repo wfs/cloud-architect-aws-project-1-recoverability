@@ -1,0 +1,94 @@
+andrew@andrew-Alienware-Aurora-R5:~/Documents/aws_cloud_architect/cloud-architect-aws-project-1-recoverability$ ssh -i "secondary-ec2-keypair.pem" ubuntu@ec2-13-213-19-168.ap-southeast-1.compute.amazonaws.com
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-1045-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Jul 10 00:01:12 UTC 2021
+
+  System load:  0.08              Processes:             103
+  Usage of /:   21.3% of 7.69GB   Users logged in:       0
+  Memory usage: 24%               IPv4 address for eth0: 10.2.10.170
+  Swap usage:   0%
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+86 updates can be applied immediately.
+40 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+
+Last login: Fri Jul  9 07:03:41 2021 from 1.157.195.193
+
+ubuntu@ip-10-2-10-170:~$ sudo mysql -u dbuser -p -h udacity.cwntpftfj26i.ap-southeast-1.rds.amazonaws.com
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 192
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| udacity            |
++--------------------+
+4 rows in set (0.03 sec)
+
+mysql> USE udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| cats              |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM cats;
++----+---------+--------+------------+
+| id | name    | owner  | birth      |
++----+---------+--------+------------+
+|  1 | Sandy   | Lennon | 2015-01-03 |
+|  3 | Charlie | River  | 2016-05-21 |
++----+---------+--------+------------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO cats ( name, owner, birth) VALUES ( 'Cookie', 'Casey', '2013-11-13' );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM cats;
++----+---------+--------+------------+
+| id | name    | owner  | birth      |
++----+---------+--------+------------+
+|  1 | Sandy   | Lennon | 2015-01-03 |
+|  3 | Charlie | River  | 2016-05-21 |
+|  4 | Cookie  | Casey  | 2013-11-13 |
++----+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> quit;
+Bye
+
+ubuntu@ip-10-2-10-170:~$ exit
+logout
+Connection to ec2-13-213-19-168.ap-southeast-1.compute.amazonaws.com closed.
+
+andrew@andrew-Alienware-Aurora-R5:~/Documents/aws_cloud_architect/cloud-architect-aws-project-1-recoverability$ 

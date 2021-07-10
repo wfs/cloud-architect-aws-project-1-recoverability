@@ -1,0 +1,274 @@
+andrew@andrew-Alienware-Aurora-R5:~/Documents/aws_cloud_architect/cloud-architect-aws-project-1-recoverability$ sudo chmod 400 primary-ec2-keypair.pem
+[sudo] password for andrew: 
+
+andrew@andrew-Alienware-Aurora-R5:~/Documents/aws_cloud_architect/cloud-architect-aws-project-1-recoverability$ ls -ali primary-ec2-keypair.pem 
+37755743 -r-------- 1 andrew andrew 1704 Jul  7 15:56 primary-ec2-keypair.pem
+
+andrew@andrew-Alienware-Aurora-R5:~/Documents/aws_cloud_architect/cloud-architect-aws-project-1-recoverability$  ssh -i "primary-ec2-keypair.pem" ubuntu@ec2-13-239-30-201.ap-southeast-2.compute.amazonaws.com
+The authenticity of host 'ec2-13-239-30-201.ap-southeast-2.compute.amazonaws.com (13.239.30.201)' can't be established.
+ECDSA key fingerprint is SHA256:t7Qr9z/xWVQaEa4tUXh/0HuR8B6DD/r4Tarl2k64gHo.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-13-239-30-201.ap-southeast-2.compute.amazonaws.com,13.239.30.201' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-1045-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Jul  7 06:09:50 UTC 2021
+
+  System load:  0.0               Processes:             100
+  Usage of /:   16.4% of 7.69GB   Users logged in:       0
+  Memory usage: 22%               IPv4 address for eth0: 10.1.10.159
+  Swap usage:   0%
+
+1 update can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@ip-10-1-10-159:~$ sudo apt-get update
+Hit:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal InRelease
+Get:2 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:3 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports InRelease [101 kB]
+Get:4 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/universe amd64 Packages [8628 kB]
+Get:5 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/universe Translation-en [5124 kB]
+Get:6 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]           
+Get:7 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/universe amd64 c-n-f Metadata [265 kB]
+Get:8 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [144 kB]
+Get:9 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/multiverse Translation-en [104 kB]
+Get:10 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/multiverse amd64 c-n-f Metadata [9136 B]
+Get:11 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [1082 kB]
+Get:12 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [238 kB]
+Get:13 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [13.6 kB]
+Get:14 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [318 kB]
+Get:15 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [46.1 kB]
+Get:16 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 c-n-f Metadata [456 B]
+Get:17 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [839 kB]
+Get:18 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [175 kB]
+Get:19 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [18.0 kB]
+Get:20 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [23.6 kB]
+Get:21 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [6472 B]
+Get:22 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [648 B]
+Get:23 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [2568 B]
+Get:24 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/main Translation-en [1120 B]
+Get:25 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [400 B]
+Get:26 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:27 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [5788 B]
+Get:28 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [2060 B]
+Get:29 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [288 B]
+Get:30 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-backports/multiverse amd64 c-n-f Metadata [116 B]
+Get:31 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [741 kB]
+Get:32 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [146 kB]
+Get:33 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [7956 B]
+Get:34 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [282 kB]
+Get:35 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [40.9 kB]
+Get:36 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [456 B]
+Get:37 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [628 kB]
+Get:38 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [95.9 kB]
+Get:39 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [11.6 kB]
+Get:40 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [19.9 kB]
+Get:41 http://security.ubuntu.com/ubuntu focal-security/multiverse Translation-en [4316 B]
+Get:42 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 c-n-f Metadata [528 B]
+Fetched 19.4 MB in 3s (5730 kB/s)                                
+Reading package lists... Done
+
+ubuntu@ip-10-1-10-159:~$ sudo apt install mysql-client
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  mysql-client-8.0 mysql-client-core-8.0 mysql-common
+The following NEW packages will be installed:
+  mysql-client mysql-client-8.0 mysql-client-core-8.0 mysql-common
+0 upgraded, 4 newly installed, 0 to remove and 80 not upgraded.
+Need to get 4255 kB of archives.
+After this operation, 65.1 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-core-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [4216 kB]
+Get:2 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal/main amd64 mysql-common all 5.8+1.0.5ubuntu2 [7496 B]
+Get:3 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-8.0 amd64 8.0.25-0ubuntu0.20.04.1 [22.0 kB]
+Get:4 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client all 8.0.25-0ubuntu0.20.04.1 [9424 B]
+Fetched 4255 kB in 0s (32.3 MB/s) 
+Selecting previously unselected package mysql-client-core-8.0.
+(Reading database ... 60149 files and directories currently installed.)
+Preparing to unpack .../mysql-client-core-8.0_8.0.25-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-client-core-8.0 (8.0.25-0ubuntu0.20.04.1) ...
+Selecting previously unselected package mysql-common.
+Preparing to unpack .../mysql-common_5.8+1.0.5ubuntu2_all.deb ...
+Unpacking mysql-common (5.8+1.0.5ubuntu2) ...
+Selecting previously unselected package mysql-client-8.0.
+Preparing to unpack .../mysql-client-8.0_8.0.25-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-client-8.0 (8.0.25-0ubuntu0.20.04.1) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../mysql-client_8.0.25-0ubuntu0.20.04.1_all.deb ...
+Unpacking mysql-client (8.0.25-0ubuntu0.20.04.1) ...
+Setting up mysql-common (5.8+1.0.5ubuntu2) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Setting up mysql-client-core-8.0 (8.0.25-0ubuntu0.20.04.1) ...
+Setting up mysql-client-8.0 (8.0.25-0ubuntu0.20.04.1) ...
+Setting up mysql-client (8.0.25-0ubuntu0.20.04.1) ...
+Processing triggers for man-db (2.9.1-1) ...
+ubuntu@ip-10-1-10-159:~$ mysql -V
+mysql  Ver 8.0.25-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))
+
+ubuntu@ip-10-1-10-159:~$ which mysql
+/usr/bin/mysql
+
+ubuntu@ip-10-1-10-159:~$ ls -ali /usr/bin/mysql
+61141 -rwxr-xr-x 1 root root 7284864 May 11 12:49 /usr/bin/mysql
+
+ubuntu@ip-10-1-10-159:~$ sudo mysql -u dbuser -p -h udacity.cvblabgxnph4.ap-southeast-2.rds.amazonaws.com
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 544
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| udacity            |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> USE udacity
+Database changed
+
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE cats
+    -> (
+    ->   id              INT unsigned NOT NULL AUTO_INCREMENT, # Unique ID for the record
+    ->   name            VARCHAR(150) NOT NULL,                # Name of the cat
+    ->   owner           VARCHAR(150) NOT NULL,                # Owner of the cat
+    ->   birth           DATE NOT NULL,                        # Birthday of the cat
+    ->   PRIMARY KEY     (id)                                  # Make the id the primary key
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| cats              |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIBE cats;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(150) | NO   |     | NULL    |                |
+| owner | varchar(150) | NO   |     | NULL    |                |
+| birth | date         | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> INSERT INTO cats ( name, owner, birth) VALUES
+    ->   ( 'Sandy', 'Lennon', '2015-01-03' ),
+    ->   ( 'Cookie', 'Casey', '2013-11-13' ),
+    ->   ( 'Charlie', 'River', '2016-05-21' );
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM cats;
++----+---------+--------+------------+
+| id | name    | owner  | birth      |
++----+---------+--------+------------+
+|  1 | Sandy   | Lennon | 2015-01-03 |
+|  2 | Cookie  | Casey  | 2013-11-13 |
+|  3 | Charlie | River  | 2016-05-21 |
++----+---------+--------+------------+
+3 rows in set (0.01 sec)
+
+mysql> DELETE FROM cats WHERE name='Cookie';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM cats;
++----+---------+--------+------------+
+| id | name    | owner  | birth      |
++----+---------+--------+------------+
+|  1 | Sandy   | Lennon | 2015-01-03 |
+|  3 | Charlie | River  | 2016-05-21 |
++----+---------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE cats ADD gender CHAR(1) AFTER name;
+Query OK, 0 rows affected (0.45 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE cats;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(150) | NO   |     | NULL    |                |
+| gender | char(1)      | YES  |     | NULL    |                |
+| owner  | varchar(150) | NO   |     | NULL    |                |
+| birth  | date         | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE cats\G
+*************************** 1. row ***************************
+       Table: cats
+Create Table: CREATE TABLE `cats` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `gender` char(1) DEFAULT NULL,
+  `owner` varchar(150) NOT NULL,
+  `birth` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE cats DROP gender;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE cats;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(150) | NO   |     | NULL    |                |
+| owner | varchar(150) | NO   |     | NULL    |                |
+| birth | date         | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> quit;
+Bye
+
+ubuntu@ip-10-1-10-159:~$ exit
+logout
+Connection to ec2-13-239-30-201.ap-southeast-2.compute.amazonaws.com closed.
+
+andrew@andrew-Alienware-Aurora-R5:~/Documents/aws_cloud_architect/cloud-architect-aws-project-1-recoverability$ 

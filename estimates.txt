@@ -1,0 +1,37 @@
+﻿Availability Estimate
+Write a paragraph or two describing the achievable Recovery Time Objective (RTO) and Recovery Point Objective (RPO) for this Multi-AZ, multi-region database in terms of:
+
+
+Minimum Recovery Time Objective (RTO) for a single AZ outage (Region Asia Pacific (Sydney), Availability Zone - ap-southeast-2a): 1hr 15min
+00:00 - Problem happens (0 minutes)
+00:05 - Alarm condition reached: If we add an Amazon Cloudwatch alarm for Master read/write database ‘alive’ that is polled every 5 minutes in current Region Asia Pacific (Sydney), Availability Zone (ap-southeast-2a). (5 minutes)
+00:06 - Amazon Cloudwatch alarm triggers an Amazon SNS text message to on-call staff (1 minute)
+00:16 - On-call staff may need to get out of bed, get to computer, log in, log onto VPN (10 minutes)
+00:26 - On-call staff starts diagnosing issue (10 minutes)
+00:41 - Root cause is discovered (15 minutes)
+00:46 - Remediation started. (5 minutes)
+01:11 - Remediation completed. This may require creating a new database instance in the other Availability Zone (ap-southeast-2b) for current Region Asia Pacific (Sydney), importing Replica read-only database instance data from other AWS Region Asia Pacific (Singapore - Secondary), Availability Zone (ap-southeast-1a) and verifying connectivity. (25 minutes)
+
+
+Minimum RTO for a single region outage (Region - Asia Pacific (Sydney) - ap-southeast-2 - Primary): 1hr 45min
+        00:00 - Problem happens (0 minutes)
+00:05 - Alarm condition reached: If we add an Amazon Cloudwatch alarm for Master read/write database ‘alive’ that is polled every 5 minutes in current Region Asia Pacific (Sydney), Availability Zone (ap-southeast-2a). (5 minutes)
+00:06 - Amazon Cloudwatch alarm triggers an Amazon SNS text message to on-call staff (1 minute)
+00:16 - On-call staff may need to get out of bed, get to computer, log in, log onto VPN (10 minutes)
+00:26 - On-call staff starts diagnosing issue (10 minutes)
+00:41 - Root cause is discovered (15 minutes)
+00:46 - Remediation started. (5 minutes)
+01:31 - Remediation completed. This may require creating a new Master read/write database instance in the other Availability Zone (ap-southeast-1b) for Region Asia Pacific (Singapore), importing Replica read-only database instance data from Availability Zone (ap-southeast-1a). Then create a new Region Asia Pacific (Tokyo) VPC, 1 x CIDR block, 2 x Subnets in 2 x AZs with sub-CIDR blocks, 1 x RDS DB Subnet Group where a new Replica read-only database instance will be created. Verifying connectivity between new Master (Region Singapore) and Replica (Region Tokyo), then delete original now duplicated Replica (Region Singapore). (45 minutes)
+
+
+
+
+Minimum Recovery Point Objective (RPO) for a single AZ outage: 5min
+        In a scenario that the MySQL DB instance  (read / write) Main in Region - Asia Pacific (Sydney) - ap-southeast-2 - Primary, Availability Zone - ap-southeast-2a is unavailable, then the MySQL DB instance (read)  Replica in Region - Asia Pacific (Singapore) - ap-southeast-1 - Secondary, Availability Zone - ap-southeast-1a can be reconfigured to be accept both read / write operations. As the Replica has been receiving data from the Master, then the RPO is < 5 minutes to allow for intermittent network outages.
+See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_MySQL.Replication.ReadReplicas.html#USER_MySQL.Replication.ReadReplicas.Monitor
+
+
+
+
+Minimum RPO for a single region outage: 5min
+        In a scenario where either the Main or Replica databases are unavailable due to either Sydney or Singapore Regions becoming unavailable, then the RPO is still < 5 minutes to allow for intermittent network outages.
